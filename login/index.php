@@ -19,7 +19,7 @@
 
         $conn = mysqli_connect ( $host , $user , $pass , $db ) or die ( "Falha na conexão: %s\n" . $conn -> error ) ;
 
-        $dados = mysqli_query($conn, sprintf("SELECT login, senha FROM User")) or die(mysqli_error());
+        $dados = mysqli_query($conn, sprintf("SELECT login, senha FROM User")) or die(mysqli_error($conn));
 
         $array = mysqli_fetch_assoc($dados);
 
