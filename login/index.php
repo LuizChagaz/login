@@ -12,37 +12,29 @@
 </head>
 <body>
     <?php 
-        function ini()
-        {
-            $host = "localhost";
-            $user = "root";
-            $pass = "";
-            $db = "login";
+        $host = "localhost";
+        $user = "root";
+        $pass = "";
+        $db = "login";
 
-            $conn = new mysqli ( $host , $user , $pass , $db ) or die ( "Falha na conexão: %s\n" . $conn -> error ) ;
+        $conn = mysqli_connect ( $host , $user , $pass , $db ) or die ( "Falha na conexão: %s\n" . $conn -> error ) ;
 
-            return $conn ;
+        $dados = mysqli_query($conn, sprintf("SELECT login, senha FROM User")) or die(mysqli_error());
 
+        $array = mysqli_fetch_assoc($dados);
 
-        }
+        $if = mysqli_num_rows($dados);
 
-        function fin($conn)
-        {
-            $conn -> close();
-        }
-
-
-        $conn = ini();
     ?>
     
     <form>
         <div class="form-outline mb-4">
-            <input type="text" id="form2Example1" class="form-control" />
+            <input type="text" id="form2Example1" class="form-control" placeholder="<?php echo($array["login"]); ?>" />
             <label class="form-label" for="form2Example1">login</label>
         </div>
 
         <div class="form-outline mb-4">
-            <input type="password" id="form2Example2" class="form-control" />
+            <input type="password" id="form2Example2" class="form-control" placeholder="<?php echo($array["senha"]); ?>" />
             <label class="form-label" for="form2Example2">Senha</label>
         </div>
         <button type="button" class="btn btn-primary btn-block mb-4">Entrar</button>
