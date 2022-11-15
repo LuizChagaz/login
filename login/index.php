@@ -24,21 +24,35 @@
         $array = mysqli_fetch_assoc($dados);
 
         $if = mysqli_num_rows($dados);
-
+        if(isset($_GET["login"])){
+            $login = $_GET["login"];
+            $senha = $_GET["senha"];
+        }else{
+            $login = "";
+            $senha = "";
+        }
     ?>
-    
-    <form>
+    <?php if($array["login"] == $login && $array["senha"] == $senha){?>
+        <a href="index.php">
+        <div class="funcionou">
+            <label>Logado com sucesso</label>
+        </div>
+        </a>
+
+    <?php }else{?>
+    <form method="GET">
         <div class="form-outline mb-4">
-            <input type="text" id="form2Example1" class="form-control" placeholder="<?php echo($array["login"]); ?>" />
+            <input type="text" name="login" id="form2Example1" class="form-control" placeholder="<?php echo($array["login"]); ?>" />
             <label class="form-label" for="form2Example1">login</label>
         </div>
 
         <div class="form-outline mb-4">
-            <input type="password" id="form2Example2" class="form-control" placeholder="<?php echo($array["senha"]); ?>" />
+            <input type="password" name="senha" id="form2Example2" class="form-control" placeholder="<?php echo($array["senha"]); ?>" />
             <label class="form-label" for="form2Example2">Senha</label>
         </div>
-        <button type="button" class="btn btn-primary btn-block mb-4">Entrar</button>
+        <input type="submit" class="btn btn-primary btn-block mb-4"></input>
     </form>
+    <?php }?>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
 </body>
