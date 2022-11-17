@@ -17,13 +17,11 @@
         $pass = "";
         $db = "login";
 
-        $conn = mysqli_connect ( $host , $user , $pass , $db ) or die ( "Falha na conexão: %s\n" . $conn -> error ) ;
+        $conn = new PDO("mysql:dbname=$db; host=$host; charset=utf8", $user, $pass);
 
-        $dados = mysqli_query($conn, sprintf("SELECT login, senha FROM User")) or die(mysqli_error($conn));
+        $dados = $conn->query("SELECT login, senha FROM User");
 
-        $array = mysqli_fetch_assoc($dados);
-
-        $if = mysqli_num_rows($dados);
+        $array = $dados->fetch();
         if(isset($_POST["login"])){
             $login = $_POST["login"];
             $senha = $_POST["senha"];
