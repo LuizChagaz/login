@@ -24,9 +24,9 @@
         $array = mysqli_fetch_assoc($dados);
 
         $if = mysqli_num_rows($dados);
-        if(isset($_GET["login"])){
-            $login = $_GET["login"];
-            $senha = $_GET["senha"];
+        if(isset($_POST["login"])){
+            $login = $_POST["login"];
+            $senha = $_POST["senha"];
         }else{
             $login = "";
             $senha = "";
@@ -40,7 +40,7 @@
         </a>
 
     <?php }else{?>
-    <form method="GET">
+    <form method="POST">
         <div class="form-outline mb-4">
             <input type="text" name="login" id="form2Example1" class="form-control" placeholder="<?php echo($array["login"]); ?>" />
             <label class="form-label" for="form2Example1">login</label>
