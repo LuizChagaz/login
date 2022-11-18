@@ -22,6 +22,7 @@
         $dados = $conn->query("SELECT login, senha FROM User");
 
         $array = $dados->fetch();
+
         if(isset($_POST["login"])){
             $login = $_POST["login"];
             $senha = $_POST["senha"];
@@ -48,7 +49,7 @@
             <input type="password" name="senha" id="form2Example2" class="form-control" placeholder="<?php echo($array["senha"]); ?>" />
             <label class="form-label" for="form2Example2">Senha</label>
         </div>
-        <input type="submit" class="btn btn-primary btn-block mb-4"></input>
+        <button id="entrar"  class="btn btn-primary btn-block mb-4">Entrar</button>
     </form>
     <?php }?>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
